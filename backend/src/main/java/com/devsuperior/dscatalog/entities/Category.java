@@ -1,4 +1,17 @@
-package com.devsuperior.dscatalog;
+package com.devsuperior.dscatalog.entities;
 
-public class Category {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Category implements Serializable {
+
+    private Long id;
+    private String name;
+
 }
