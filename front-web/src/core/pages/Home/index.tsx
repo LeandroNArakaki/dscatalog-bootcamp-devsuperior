@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as MainImage } from '../../core/assets/images/main-image.svg';
+import { ReactComponent as MainImage } from '../../assets/images/main-image.svg';
 import './styles.scss';
 
 const Home = () => (
