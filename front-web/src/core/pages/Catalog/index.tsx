@@ -1,16 +1,26 @@
-import React, { useEffect } from 'react';
-import './styles.scss';
+import React, { useEffect, useState } from 'react';
 import ProductCard from './components/ProductCard';
 import { Link } from 'react-router-dom';
+import './styles.scss';
+import { makeRequest } from '../../utils/request';
+import { ProductsResponse } from '../../types/Products';
+
 
 const Catalog = () => {
     //1- Quando o componente iniciar, buscar a lista de produtos
     //2- Quando a lista de produtos estiver disponível, popular um estado no componente e listar os produtos dinâmicamente
+    const [productsResponse, setProductsReponse] = useState<ProductsResponse>();
+    console.log(productsResponse);
+
 
     useEffect( () => {
-        fetch('http://localhost:3000/products')
-        .then(response => response.json())
-        .then(response => console.log(response));
+        const params = {
+            page:0,
+            linesPerPage:12
+        }
+
+        makeRequest({url:'/products', params})
+        .then(response => setProductsReponse(response.data));
     }, [] );
 
 
@@ -18,15 +28,12 @@ const Catalog = () => {
         <div className="catalog-container">
             <h1 className="catalog-title">Catálogo de produtos</h1>
             <div className="catalog-products">
-                <Link to="/products/1"><ProductCard /></Link>
-                <Link to="/products/2"><ProductCard /></Link>
-                <Link to="/products/3"><ProductCard /></Link>
-                <Link to="/products/4"><ProductCard /></Link>
-                <Link to="/products/5"><ProductCard /></Link>
-                <Link to="/products/6"><ProductCard /></Link>
-                <Link to="/products/7"><ProductCard /></Link>
-                <Link to="/products/8"><ProductCard /></Link>
-                <Link to="/products/9"><ProductCard /></Link>
+                {productsResponse?.content.map(product => (
+                    <Link to={`/products/${product.id}`} key={product.id}>
+                        <ProductCard product={product} />
+                    </Link>
+                   
+                ))}
             </div>
         </div>
     )
