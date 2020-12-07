@@ -13,7 +13,7 @@ const Catalog = () => {
     //2- Quando a lista de produtos estiver disponível, popular um estado no componente e listar os produtos dinâmicamente
     const [productsResponse, setProductsReponse] = useState<ProductsResponse>();
     const [isLoading, setIsLoading] = useState(false);
-    const [activePage,setActivePage] = useState(0);
+    const [activePage, setActivePage] = useState(0);
 
 
     useEffect(() => {
@@ -45,8 +45,9 @@ const Catalog = () => {
                     ))
                 )}
             </div>
-            {productsResponse && <Pagination totalPages={productsResponse.totalPages} activePage={activePage}  
-                onChange={page => setActivePage(page)}  />} 
+            {productsResponse && <Pagination totalPages={productsResponse.totalPages} 
+                activePage={activePage}
+                onChange={page => setActivePage(page)} />}
         </div>
     )
 };
