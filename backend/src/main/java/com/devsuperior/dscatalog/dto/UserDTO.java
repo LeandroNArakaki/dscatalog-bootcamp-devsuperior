@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,9 +18,15 @@ import java.util.Set;
 public class UserDTO implements Serializable {
 
     private Long id;
+
+    @NotBlank(message = "Campo primeiro nome está vazio")
     private String firstName;
+
     private String lastName;
+
+    @Email(message = "Por favor entrar com um email válido")
     private String email;
+
     Set<RoleDTO> roles = new HashSet<>();
 
     public UserDTO(User entity){
