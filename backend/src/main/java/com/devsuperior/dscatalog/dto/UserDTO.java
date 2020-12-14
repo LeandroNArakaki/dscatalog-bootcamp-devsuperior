@@ -1,6 +1,5 @@
 package com.devsuperior.dscatalog.dto;
 
-import com.devsuperior.dscatalog.entities.Role;
 import com.devsuperior.dscatalog.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
